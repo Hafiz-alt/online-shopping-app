@@ -80,30 +80,37 @@
             document.getElementById('form-title').innerText = 'Login';
         });
 
-        // Handle Login
+        // Handle Login: call login() from script.js and redirect on success
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
+            const email = document.getElementById('loginEmail').value.trim();
             const pass = document.getElementById('loginPassword').value;
-            login(email, pass);
+            if (login(email, pass)) {
+                // Successful login -> go to home
+                window.location.href = './home.html';
+            } else {
+                alert('Invalid email or password.');
+            }
         });
 
         // Handle Register
         document.getElementById('register-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const name = document.getElementById('regName').value;
-            const email = document.getElementById('regEmail').value;
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
             const pass = document.getElementById('regPassword').value;
             const confirmPass = document.getElementById('regConfirmPassword').value;
-
-            if (pass !== confirmPass) {
-                alert("Passwords do not match!");
+n            if (pass !== confirmPass) {
+                alert('Passwords do not match!');
                 return;
             }
 
             if (register(name, email, pass)) {
-                // Switch to login
+                alert('Registration successful! Please login.');
+                // Switch to login form
                 document.getElementById('show-login').click();
+            } else {
+                alert('User already exists! Please login or use a different email.');
             }
         });
     </script>
