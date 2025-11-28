@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - ShopMaterial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">ShopMaterial</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto" id="nav-links">
+                    <!-- Links injected by JS -->
+                </ul>
+                <ul class="navbar-nav ms-auto" id="auth-links">
+                    <!-- Auth links injected by JS -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row animate-fade-up">
+            <!-- Product Image -->
+            <div class="col-md-6 mb-4">
+                <div class="neu-card p-4 d-flex justify-content-center align-items-center h-100">
+                    <img id="detail-img" src="" alt="Product Image" class="img-fluid"
+                        style="max-height: 400px; border-radius: 20px;"
+                        onerror="this.src='https://via.placeholder.com/300'">
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-md-6 mb-4">
+                <div class="p-3">
+                    <span id="detail-category" class="badge bg-primary mb-2">Category</span>
+                    <h1 id="detail-name" class="fw-bold mb-3">Product Name</h1>
+                    <h2 id="detail-price" class="text-primary fw-bold mb-4">$0.00</h2>
+                    <p id="detail-desc" class="lead text-muted mb-5">Description goes here...</p>
+
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-neu btn-neu-primary btn-lg flex-grow-1" onclick="addToCartCurrent()">Add
+                            to Cart</button>
+                        <button class="btn btn-neu btn-lg flex-grow-1" onclick="buyNow()">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="mt-5 animate-fade-up delay-100">
+            <h3 class="fw-bold mb-4">Reviews</h3>
+            <div id="reviews-container" class="mb-4">
+                <!-- Reviews injected by JS -->
+            </div>
+
+            <div class="neu-card p-4">
+                <h5 class="fw-bold mb-3">Write a Review</h5>
+                <form id="review-form" onsubmit="handleReviewSubmit(event)">
+                    <div class="mb-3">
+                        <label class="form-label">Rating</label>
+                        <select class="form-select" id="review-rating" required>
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Good</option>
+                            <option value="3">3 - Average</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="1">1 - Terrible</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Comment</label>
+                        <textarea class="form-control" id="review-comment" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-neu btn-neu-primary">Submit Review</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="mt-5 animate-fade-up delay-200">
+            <h3 class="fw-bold mb-4">Related Products</h3>
+            <div class="row" id="related-products">
+                <!-- Injected by JS -->
+                <!DOCTYPE html>
+                <html lang="en">
+
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Product Details - ShopMaterial</title>
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+                        rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap"
+                        rel="stylesheet">
+                    <link rel="stylesheet" href="style.css">
+                </head>
+
+                <body>
+
+                    <!-- Navbar -->
+                    <nav class="navbar navbar-expand-lg mb-4">
+                        <div class="container">
+                            <a class="navbar-brand" href="home.html">ShopMaterial</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNav">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav me-auto" id="nav-links">
+                                    <!-- Links injected by JS -->
+                                </ul>
+                                <ul class="navbar-nav ms-auto" id="auth-links">
+                                    <!-- Auth links injected by JS -->
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <div class="container mt-5">
+                        <div class="row animate-fade-up">
+                            <!-- Product Image -->
+                            <div class="col-md-6 mb-4">
+                                <div class="neu-card p-4 d-flex justify-content-center align-items-center h-100">
+                                    <img id="detail-img" src="" alt="Product Image" class="img-fluid"
+                                        style="max-height: 400px; border-radius: 20px;"
+                                        onerror="this.src='https://via.placeholder.com/300'">
+                                </div>
+                            </div>
+
+                            <!-- Product Info -->
+                            <div class="col-md-6 mb-4">
+                                <div class="p-3">
+                                    <span id="detail-category" class="badge bg-primary mb-2">Category</span>
+                                    <h1 id="detail-name" class="fw-bold mb-3">Product Name</h1>
+                                    <h2 id="detail-price" class="text-primary fw-bold mb-4">$0.00</h2>
+                                    <p id="detail-desc" class="lead text-muted mb-5">Description goes here...</p>
+
+                                    <div class="d-flex gap-3">
+                                        <button class="btn btn-neu btn-neu-primary btn-lg flex-grow-1"
+                                            onclick="addToCartCurrent()">Add
+                                            to Cart</button>
+                                        <button class="btn btn-neu btn-lg flex-grow-1" onclick="buyNow()">Buy
+                                            Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reviews Section -->
+                        <div class="mt-5 animate-fade-up delay-100">
+                            <h3 class="fw-bold mb-4">Reviews</h3>
+                            <div id="reviews-container" class="mb-4">
+                                <!-- Reviews injected by JS -->
+                            </div>
+
+                            <div class="neu-card p-4">
+                                <h5 class="fw-bold mb-3">Write a Review</h5>
+                                <form id="review-form" onsubmit="handleReviewSubmit(event)">
+                                    <div class="mb-3">
+                                        <label class="form-label">Rating</label>
+                                        <select class="form-select" id="review-rating" required>
+                                            <option value="5">5 - Excellent</option>
+                                            <option value="4">4 - Good</option>
+                                            <option value="3">3 - Average</option>
+                                            <option value="2">2 - Poor</option>
+                                            <option value="1">1 - Terrible</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Comment</label>
+                                        <textarea class="form-control" id="review-comment" rows="3" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-neu btn-neu-primary">Submit Review</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Related Products -->
+                        <div class="mt-5 animate-fade-up delay-200">
+                            <h3 class="fw-bold mb-4">Related Products</h3>
+                            <div class="row" id="related-products">
+                                <!-- Injected by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                    <script src="script.js"></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            // Load Product Details
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const productId = urlParams.get('id');
+
+                            if (productId) {
+                                const product = getProduct(productId);
+                                if (product) {
+                                    document.getElementById('detail-img').src = product.imageURL;
+                                    document.getElementById('detail-name').innerText = product.name;
+                                    document.getElementById('detail-price').innerText = '$' + product.price.toFixed(2);
+                                    document.getElementById('detail-desc').innerText = product.description;
+                                    document.getElementById('detail-category').innerText = product.category || 'General';
+
+                                    // Load related
+                                    loadRelatedProducts(product.category, product.id);
+
+                                    // Load reviews
+                                    renderReviews(product.reviews || []);
+                                } else {
+                                    document.querySelector('.container').innerHTML = '<h2 class="text-center mt-5">Product not found</h2>';
+                                }
+                            } else {
+                                window.location.href = 'shop.html';
+                            }
+                        });
+
+                        function addToCartCurrent() {
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const productId = urlParams.get('id');
+                            addToCart(productId);
+                        }
+
+                        function buyNow() {
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const productId = urlParams.get('id');
+                            addToCart(productId);
+                            window.location.href = 'cart.html';
+                        }
+
+                        function loadRelatedProducts(category, currentId) {
+                            const products = getLocalStorage(PRODUCTS_KEY);
+                            const related = products.filter(p => p.category === category && p.id !== currentId).slice(0, 3);
+
+                            const container = document.getElementById('related-products');
+                            if (related.length === 0) {
+                                container.innerHTML = '<p class="text-muted">No related products found.</p>';
+                                return;
+                            }
+
+                            container.innerHTML = related.map(p => `
+                <div class="col-md-4 mb-4">
+                    <div class="neu-card h-100 p-3" onclick="window.location.href='product-details.html?id=${p.id}'" style="cursor: pointer;">
+                        <img src="${p.imageURL}" class="card-img-top" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300'">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">${p.name}</h5>
+                            <p class="text-primary fw-bold">$${p.price.toFixed(2)}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+                        }
+
+                        function renderReviews(reviews) {
+                            const container = document.getElementById('reviews-container');
+                            if (reviews.length === 0) {
+                                container.innerHTML = '<p class="text-muted">No reviews yet. Be the first to review!</p>';
+                                return;
+                            }
+
+                            container.innerHTML = reviews.map(r => `
+                <div class="neu-card p-3 mb-3">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="fw-bold">${r.user}</h6>
+                        <span class="text-warning">★ ${r.rating}</span>
+                    </div>
+                    <p class="mb-0 text-muted">${r.comment}</p>
+                </div>
+            `).join('');
+                        }
+
+                        function handleReviewSubmit(e) {
+                            e.preventDefault();
+                            const user = getLoggedInUser();
+                            if (!user) {
+                                showToast('Please login to review', 'error');
+                                return;
+                            }
+
+                            const rating = document.getElementById('review-rating').value;
+                            const comment = document.getElementById('review-comment').value;
+
+                            const review = {
+                                user: user.name,
+                                rating: parseInt(rating),
+                                comment: comment
+                            };
+
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const productId = urlParams.get('id');
+
+                            if (addReview(productId, review)) {
+                                document.getElementById('review-form').reset();
+                                // Reload reviews
+                                const product = getProduct(productId);
+                                renderReviews(product.reviews);
+                            }
+                        }
+                    </script>
+                </body>
+
+                </html>

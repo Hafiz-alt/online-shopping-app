@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - ShopMaterial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">ShopMaterial</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto" id="nav-links">
+                    <!-- Links injected by JS -->
+                </ul>
+                <ul class="navbar-nav ms-auto" id="auth-links">
+                    <!-- Auth links injected by JS -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Futuristic Neon) -->
+    <div class="container-fluid hero-section d-flex align-items-center justify-content-center position-relative overflow-hidden"
+        style="min-height: 95vh; perspective: 1000px; background: radial-gradient(circle at 50% 50%, #f0f4f8, #e0e5ec);">
+
+        <!-- Particles -->
+        <div class="particles-container">
+            <div class="particle" style="width: 10px; height: 10px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="particle"
+                style="width: 15px; height: 15px; top: 60%; left: 80%; animation-delay: 2s; background: var(--neon-purple);">
+            </div>
+            <div class="particle" style="width: 8px; height: 8px; top: 40%; left: 40%; animation-delay: 4s;"></div>
+            <div class="particle"
+                style="width: 12px; height: 12px; top: 80%; left: 20%; animation-delay: 1s; background: var(--neon-purple);">
+            </div>
+        </div>
+
+        <!-- Parallax Background Elements -->
+        <div class="floating-shape shape-1" style="opacity: 0.4; filter: blur(100px);"></div>
+        <div class="floating-shape shape-2" style="opacity: 0.4; filter: blur(100px);"></div>
+
+        <div class="container position-relative z-2">
+            <div class="row align-items-center">
+                <!-- Text Content (Left) -->
+                <div class="col-lg-6 mb-5 mb-lg-0 ps-lg-5">
+                    <div class="anim-slide-in">
+                        <span class="badge bg-light text-dark mb-3 px-3 py-2 rounded-pill shadow-sm"
+                            style="letter-spacing: 2px; font-weight: 600;">NEW ARRIVAL</span>
+                        <h1 class="display-1 fw-bold mb-4 hero-title" style="line-height: 1.1;">
+                            NEXT GEN<br>
+                            <span style="color: var(--primary-color);">AUDIO</span>
+                        </h1>
+                        <p class="lead mb-5 text-muted kinetic-desc" style="max-width: 450px;">
+                            Immerse yourself in crystal clear sound with our latest spatial audio technology. Designed
+                            for the future.
+                        </p>
+                        <div class="d-flex gap-3">
+                            <a href="shop.html" class="btn btn-neon btn-lg px-5 py-3 rounded-pill fw-bold">
+                                Shop Now
+                            </a>
+                            <a href="#features" class="btn btn-link text-decoration-none text-muted px-4 py-3">
+                                View Features
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Image (Right) -->
+                <div class="col-lg-6 text-center position-relative hero-product-wrapper anim-scale-in">
+                    <!-- Main Product Image -->
+                    <div class="spatial-container">
+                        <div class="spatial-card p-0 border-0 bg-transparent shadow-none" id="hero-card">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&q=90"
+                                class="img-fluid hero-product-img" alt="Wireless Pro Headphones"
+                                style="max-height: 500px;">
+                        </div>
+                    </div>
+
+                    <!-- Glass Overlay Card -->
+                    <div class="glass-card-overlay d-flex align-items-center gap-3">
+                        <div class="bg-white rounded-circle p-2 d-flex align-items-center justify-content-center"
+                            style="width: 40px; height: 40px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--primary-color)"
+                                class="bi bi-soundwave" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8.5 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11a.5.5 0 0 1 .5-.5zm-2 2a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zm-6 1.5A.5.5 0 0 1 1 6v4a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm8 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm-10 1A.5.5 0 0 1 1.5 7v2a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5zm12 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5z" />
+                            </svg>
+                        </div>
+                        <div class="text-start">
+                            <h6 class="mb-0 fw-bold text-dark">Wireless Pro</h6>
+                            <small class="text-muted" style="font-size: 0.75rem;">Spatial Audio</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories (Bento Grid) -->
+    <div class="container mt-5 mb-5">
+        <h2 class="text-center mb-5 fw-bold display-4" data-scroll>Curated Collections</h2>
+        <div class="bento-grid">
+            <!-- Large Item -->
+            <div class="bento-item item-large neu-card p-0 overflow-hidden position-relative"
+                onclick="window.location.href='shop.html'">
+                <img src="https://images.unsplash.com/photo-1498049381960-da98d71065cd?w=600&q=80"
+                    class="img-fluid h-100 w-100 object-fit-cover" alt="Electronics">
+                <div class="glass-overlay d-flex align-items-end p-4">
+                    <div>
+                        <h3 class="fw-bold text-white">Electronics</h3>
+                        <p class="text-white-50 mb-0">Future Tech</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medium Item -->
+            <div class="bento-item item-medium neu-card p-0 overflow-hidden position-relative"
+                onclick="window.location.href='shop.html'">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80"
+                    class="img-fluid h-100 w-100 object-fit-cover" alt="Fashion">
+                <div class="glass-overlay d-flex align-items-end p-4">
+                    <div>
+                        <h3 class="fw-bold text-white">Fashion</h3>
+                        <p class="text-white-50 mb-0">Trendsetters</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Small Item 1 -->
+            <div class="bento-item item-small neu-card p-0 overflow-hidden position-relative"
+                onclick="window.location.href='shop.html'">
+                <img src="https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?w=600&q=80"
+                    class="img-fluid h-100 w-100 object-fit-cover" alt="Home">
+                <div class="glass-overlay d-flex align-items-end p-3">
+                    <div>
+                        <h5 class="fw-bold text-white">Home</h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Small Item 2 -->
+            <div class="bento-item item-small neu-card p-0 overflow-hidden position-relative"
+                onclick="window.location.href='shop.html'">
+                <img src="https://images.unsplash.com/photo-1551028919-ac7675cf6c95?w=600&q=80"
+                    class="img-fluid h-100 w-100 object-fit-cover" alt="Accessories">
+                <div class="glass-overlay d-flex align-items-end p-3">
+                    <div>
+                        <h5 class="fw-bold text-white">Accessories</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

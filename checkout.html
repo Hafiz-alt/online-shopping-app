@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ShopMaterial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">ShopMaterial</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto" id="nav-links">
+                    <!-- Links injected by JS -->
+                </ul>
+                <ul class="navbar-nav ms-auto" id="auth-links">
+                    <!-- Auth links injected by JS -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 mb-5">
+        <h2 class="fw-bold mb-4">Checkout</h2>
+        <div class="row">
+            <!-- Order Summary -->
+            <div class="col-md-5 order-md-2 mb-4">
+                <div class="neu-card p-4">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-primary">Your cart</span>
+                        <span class="badge bg-primary rounded-pill" id="checkout-count">0</span>
+                    </h4>
+                    <ul class="list-group list-group-flush mb-3" id="checkout-items">
+                        <!-- Items injected by JS -->
+                    </ul>
+                    <div class="d-flex justify-content-between fw-bold fs-5 mt-3 pt-3 border-top">
+                        <span>Total (USD)</span>
+                        <span id="checkout-total">$0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Form -->
+            <div class="col-md-7 order-md-1">
+                <div class="neu-card p-4">
+                    <h4 class="mb-3">Payment Details</h4>
+                    <form id="payment-form" onsubmit="processPayment(event)">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="cc-name" class="form-label">Name on card</label>
+                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                                <small class="text-muted">Full name as displayed on card</small>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="cc-number" class="form-label">Credit card number</label>
+                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="cc-expiration" class="form-label">Expiration</label>
+                                <input type="text" class="form-control" id="cc-expiration" placeholder="MM/YY" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="cc-cvv" class="form-label">CVV</label>
+                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                            </div>
+                        </div>
+
+                        <hr class="my-4" style="opacity: 0.1;">
+
+                        <button class="btn btn-neu btn-neu-primary w-100 btn-lg" type="submit" id="pay-btn">
+                            <span id="pay-text">Pay Now</span>
+                            <span id="pay-spinner" class="spinner-border spinner-border-sm d-none" role="status"
+                                aria-hidden="true"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content neu-card border-0">
+                <div class="modal-body text-center p-5">
+                    <div class="mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="var(--primary-color)"
+                            class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </svg>
+                    </div>
+                    <h3 class="fw-bold mb-3">Payment Successful!</h3>
+                    <p class="text-muted mb-4">Thank you for your purchase. Your order has been confirmed.</p>
+                    <button type="button" class="btn btn-neu btn-neu-primary px-5"
+                        onclick="window.location.href='home.html'">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

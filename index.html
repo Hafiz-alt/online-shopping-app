@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ShopMaterial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="d-flex align-items-center justify-content-center min-vh-100">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card p-4">
+                    <h3 class="text-center mb-4 text-primary-custom" id="form-title">Login</h3>
+
+                    <!-- Login Form -->
+                    <form id="login-form">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com"
+                                required>
+                            <label for="loginEmail">Email address</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password"
+                                required>
+                            <label for="loginPassword">Password</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+                        <p class="text-center">Don't have an account? <a href="#" id="show-register">Register</a></p>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form id="register-form" class="d-none">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="regName" placeholder="Name" required>
+                            <label for="regName">Full Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="regEmail" placeholder="name@example.com"
+                                required>
+                            <label for="regEmail">Email address</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="regPassword" placeholder="Password"
+                                required>
+                            <label for="regPassword">Password</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="regConfirmPassword"
+                                placeholder="Confirm Password" required>
+                            <label for="regConfirmPassword">Confirm Password</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Register</button>
+                        <p class="text-center">Already have an account? <a href="#" id="show-login">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Toggle Forms
+        document.getElementById('show-register').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('login-form').classList.add('d-none');
+            document.getElementById('register-form').classList.remove('d-none');
+            document.getElementById('form-title').innerText = 'Register';
+        });
+
+        document.getElementById('show-login').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('register-form').classList.add('d-none');
+            document.getElementById('login-form').classList.remove('d-none');
+            document.getElementById('form-title').innerText = 'Login';
+        });
+
+        // Handle Login
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPassword').value;
+            login(email, pass);
+        });
+
+        // Handle Register
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const pass = document.getElementById('regPassword').value;
+            const confirmPass = document.getElementById('regConfirmPassword').value;
+
+            if (pass !== confirmPass) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            if (register(name, email, pass)) {
+                // Switch to login
+                document.getElementById('show-login').click();
+            }
+        });
+    </script>
+</body>
+
+</html>
