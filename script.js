@@ -107,7 +107,26 @@ function addToCart(productId) {
         setTimeout(() => window.location.href = './index.html', 1500);
         return;
     }
-    function buyNow(productId) {
+
+    const product = getProduct(productId);
+    if (!product) return;
+
+    let cart = getLocalStorage(CART_KEY);
+    const existingItem = cart.find(item => item.productId === productId);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ productId, quantity: 1, productDetails: product });
+    }
+
+    setLocalStorage(CART_KEY, cart);
+    showToast('Added to cart!');
+    updateCartBadge();
+}
+
+// Buy Now: replace cart with only this item and go to checkout
+function buyNow(productId) {
     const user = getLoggedInUser();
     if (!user) {
         showToast('Please login first', 'error');
@@ -133,22 +152,6 @@ function addToCart(productId) {
 }
 
 
-    const product = getProduct(productId);
-    if (!product) return;
-
-    let cart = getLocalStorage(CART_KEY);
-    const existingItem = cart.find(item => item.productId === productId);
-
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({ productId, quantity: 1, productDetails: product });
-    }
-
-    setLocalStorage(CART_KEY, cart);
-    showToast('Added to cart!');
-    updateCartBadge();
-}
 
 function updateCartQuantity(productId, quantity) {
     let cart = getLocalStorage(CART_KEY);
@@ -723,6 +726,7 @@ window.buyNow = buyNow;
 window.handleCheckoutStart = handleCheckoutStart;
 window.openPaymentGateway = openPaymentGateway;
 window.finalizeOrder = finalizeOrder;
+
 
 
 
