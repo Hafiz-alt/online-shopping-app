@@ -1,119 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - ShopMaterial</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout - ShopMaterial</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <!-- Navbar is handled by your script.js (updateNavbar) -->
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-7">
+        <h3 class="mb-4">Checkout</h3>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="home.html">ShopMaterial</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto" id="nav-links">
-                    <!-- Links injected by JS -->
-                </ul>
-                <ul class="navbar-nav ms-auto" id="auth-links">
-                    <!-- Auth links injected by JS -->
-                </ul>
-            </div>
+        <div id="checkout-items" class="list-group mb-4">
+          <!-- Items populated by script.js -> loadCheckout() -->
         </div>
-    </nav>
 
-    <div class="container mt-5 mb-5">
-        <h2 class="fw-bold mb-4">Checkout</h2>
-        <div class="row">
-            <!-- Order Summary -->
-            <div class="col-md-5 order-md-2 mb-4">
-                <div class="neu-card p-4">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-primary">Your cart</span>
-                        <span class="badge bg-primary rounded-pill" id="checkout-count">0</span>
-                    </h4>
-                    <ul class="list-group list-group-flush mb-3" id="checkout-items">
-                        <!-- Items injected by JS -->
-                    </ul>
-                    <div class="d-flex justify-content-between fw-bold fs-5 mt-3 pt-3 border-top">
-                        <span>Total (USD)</span>
-                        <span id="checkout-total">$0.00</span>
-                    </div>
-                </div>
+        <div class="card p-3 mb-4">
+          <h5 class="mb-3">Choose Payment Method</h5>
+
+          <div id="payment-options" class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="pay_card" value="card" checked>
+              <label class="form-check-label" for="pay_card">Card / Debit / Credit</label>
             </div>
-
-            <!-- Payment Form -->
-            <div class="col-md-7 order-md-1">
-                <div class="neu-card p-4">
-                    <h4 class="mb-3">Payment Details</h4>
-                    <form id="payment-form" onsubmit="processPayment(event)">
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <label for="cc-name" class="form-label">Name on card</label>
-                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                                <small class="text-muted">Full name as displayed on card</small>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="cc-number" class="form-label">Credit card number</label>
-                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="cc-expiration" class="form-label">Expiration</label>
-                                <input type="text" class="form-control" id="cc-expiration" placeholder="MM/YY" required>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="cc-cvv" class="form-label">CVV</label>
-                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                            </div>
-                        </div>
-
-                        <hr class="my-4" style="opacity: 0.1;">
-
-                        <button class="btn btn-neu btn-neu-primary w-100 btn-lg" type="submit" id="pay-btn">
-                            <span id="pay-text">Pay Now</span>
-                            <span id="pay-spinner" class="spinner-border spinner-border-sm d-none" role="status"
-                                aria-hidden="true"></span>
-                        </button>
-                    </form>
-                </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="pay_upi" value="upi">
+              <label class="form-check-label" for="pay_upi">UPI (PhonePe / Google Pay)</label>
             </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="pay_cod" value="cod">
+              <label class="form-check-label" for="pay_cod">Cash on Delivery (COD)</label>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button id="pay-now" class="btn btn-primary" onclick="startCheckout()">Pay Now</button>
+            <button class="btn btn-outline-secondary" onclick="window.location.href='cart.html'">Back to Cart</button>
+          </div>
         </div>
+
+      </div>
+
+      <div class="col-lg-5">
+        <aside class="card p-3">
+          <h5>Order Summary</h5>
+          <div class="d-flex justify-content-between my-2">
+            <div>Items total</div>
+            <div id="checkout-total">$0.00</div>
+          </div>
+          <div class="d-flex justify-content-between my-2">
+            <div>Items</div>
+            <div id="checkout-count">0</div>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between fw-bold">
+            <div>Payable</div>
+            <div id="checkout-payable">$0.00</div>
+          </div>
+        </aside>
+      </div>
     </div>
+  </div>
 
-    <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content neu-card border-0">
-                <div class="modal-body text-center p-5">
-                    <div class="mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="var(--primary-color)"
-                            class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                        </svg>
-                    </div>
-                    <h3 class="fw-bold mb-3">Payment Successful!</h3>
-                    <p class="text-muted mb-4">Thank you for your purchase. Your order has been confirmed.</p>
-                    <button type="button" class="btn btn-neu btn-neu-primary px-5"
-                        onclick="window.location.href='home.html'">Continue Shopping</button>
-                </div>
-            </div>
+  <!-- Simulated Payment Gateway Modal -->
+  <div class="modal fade" id="gatewayModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Payment Gateway</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body text-center">
+          <p id="gateway-msg">Processing payment...</p>
+          <div id="gateway-spinner" class="spinner-border my-3" role="status"><span class="visually-hidden">Loading...</span></div>
+          <div id="gateway-actions" class="d-none">
+            <button class="btn btn-success me-2" id="gateway-success">Simulate Success</button>
+            <button class="btn btn-danger" id="gateway-fail">Simulate Failure</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+  <!-- Success Modal (reuse your success UI if present) -->
+  <div class="modal fade" id="orderSuccessModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-3 text-center">
+        <div class="modal-body">
+          <h4 class="text-success">Payment Success</h4>
+          <p id="order-success-msg">Your order <strong id="order-id-span"></strong> has been placed.</p>
+          <button class="btn btn-primary" id="go-to-orders">Go to Orders</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap + your script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // When this page loads, your script.js has loadCheckout() called in DOMContentLoaded.
+    // Add a small helper binding:
+    function startCheckout() {
+      // Determine selected payment method
+      const method = document.querySelector('input[name="paymentMethod"]:checked').value;
+      // Call a helper that we've added to script.js
+      if (typeof handleCheckoutStart === 'function') {
+        handleCheckoutStart(method);
+      } else {
+        alert('Checkout handler not available.');
+      }
+    }
+
+    // Quick hookup for "Go to Orders" button after success
+    document.getElementById('go-to-orders').addEventListener('click', () => {
+      window.location.href = 'profile.html'; // profile/orders page
+    });
+  </script>
 </body>
-
 </html>
