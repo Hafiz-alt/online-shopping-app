@@ -64,56 +64,64 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
-    <script>
-        // Toggle Forms
-        document.getElementById('show-register').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('login-form').classList.add('d-none');
-            document.getElementById('register-form').classList.remove('d-none');
-            document.getElementById('form-title').innerText = 'Register';
-        });
+   <script>
+  // Toggle Forms
+  document.getElementById('show-register').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('login-form').classList.add('d-none');
+    document.getElementById('register-form').classList.remove('d-none');
+    document.getElementById('form-title').innerText = 'Register';
+  });
 
-        document.getElementById('show-login').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('register-form').classList.add('d-none');
-            document.getElementById('login-form').classList.remove('d-none');
-            document.getElementById('form-title').innerText = 'Login';
-        });
+  document.getElementById('show-login').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('register-form').classList.add('d-none');
+    document.getElementById('login-form').classList.remove('d-none');
+    document.getElementById('form-title').innerText = 'Login';
+  });
 
-        // Handle Login: call login() from script.js and redirect on success
-        document.getElementById('login-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            const pass = document.getElementById('loginPassword').value;
-            if (login(email, pass)) {
-                // Successful login -> go to home
-                window.location.href = './home.html';
-            } else {
-                alert('Invalid email or password.');
-            }
-        });
+  // Handle Login: call login() from script.js and redirect on success
+  document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass = document.getElementById('loginPassword').value;
+    if (login && typeof login === 'function' && login(email, pass)) {
+      window.location.href = './home.html';
+    } else {
+      alert('Invalid email or password.');
+    }
+  });
 
-        // Handle Register
-        document.getElementById('register-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('regName').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
-            const pass = document.getElementById('regPassword').value;
-            const confirmPass = document.getElementById('regConfirmPassword').value;
-n            if (pass !== confirmPass) {
-                alert('Passwords do not match!');
-                return;
-            }
+  // Handle Register
+  document.getElementById('register-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('regName').value.trim();
+    const email = document.getElementById('regEmail').value.trim().toLowerCase();
+    const pass = document.getElementById('regPassword').value;
+    const confirmPass = document.getElementById('regConfirmPassword').value;
 
-            if (register(name, email, pass)) {
-                alert('Registration successful! Please login.');
-                // Switch to login form
-                document.getElementById('show-login').click();
-            } else {
-                alert('User already exists! Please login or use a different email.');
-            }
-        });
-    </script>
+    if (pass !== confirmPass) {
+      alert('Passwords do not match!');
+      return;
+    }
+
+    // ensure register exists before calling
+    if (register && typeof register === 'function') {
+      if (register(name, email, pass)) {
+        alert('Registration successful! Please login.');
+        // Switch to login form
+        document.getElementById('show-login').click();
+      } else {
+        alert('User already exists! Please login or use a different email.');
+      }
+    } else {
+      console.error('register() function not found. Check script.js');
+      alert('Internal error: registration function missing.');
+    }
+  });
+</script>
+
 </body>
+
 
 </html>
