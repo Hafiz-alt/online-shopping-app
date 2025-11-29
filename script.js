@@ -566,3 +566,11 @@ function toggleTheme() {
     const toggleBtn = document.getElementById('theme-toggle');
     if (toggleBtn) toggleBtn.innerText = newTheme === 'dark' ? '☀️' : '🌙';
 }
+// Expose functions to inline scripts (make them global)
+window.register = register;
+window.login = login;
+window.logout = logout;
+window.addToCart = addToCart;
+window.updateCartQuantity = updateCartQuantity;
+window.removeFromCart = removeFromCart;
+
