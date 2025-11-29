@@ -603,5 +603,7 @@ window.addToCart = addToCart;
 window.updateCartQuantity = updateCartQuantity;
 window.removeFromCart = removeFromCart;
 
+window.buyNow = buyNow;
+
 
 
