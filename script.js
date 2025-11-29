@@ -275,12 +275,16 @@ function renderProducts(filterCategory = 'All') {
                     <p class="card-text text-truncate">${p.description}</p>
                     <h6 class="card-subtitle mb-3 text-primary fw-bold">$${p.price.toFixed(2)}</h6>
                     <div class="mt-auto d-flex gap-2">
-                        ${userIsAdmin ? `
-                            <button class="btn btn-warning btn-sm flex-grow-1" onclick="editProduct('${p.id}')">Edit</button>
-                            <button class="btn btn-danger btn-sm flex-grow-1" onclick="deleteProduct('${p.id}')">Delete</button>
-                        ` : `
-                            <button class="btn btn-neu btn-neu-primary w-100" onclick="addToCart('${p.id}')">Add to Cart</button>
-                        `}
+                      ${userIsAdmin ? `
+    <button class="btn btn-warning btn-sm flex-grow-1" onclick="editProduct('${p.id}')">Edit</button>
+    <button class="btn btn-danger btn-sm flex-grow-1" onclick="deleteProduct('${p.id}')">Delete</button>
+` : `
+    <div class="d-flex gap-2 w-100">
+      <button class="btn btn-neu btn-neu-primary flex-grow-1" onclick="addToCart('${p.id}')">Add to Cart</button>
+      <button class="btn btn-success flex-shrink-0" onclick="buyNow('${p.id}')">Buy Now</button>
+    </div>
+`}
+
                     </div>
                 </div>
             </div>
@@ -573,4 +577,5 @@ window.logout = logout;
 window.addToCart = addToCart;
 window.updateCartQuantity = updateCartQuantity;
 window.removeFromCart = removeFromCart;
+
 
