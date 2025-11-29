@@ -517,6 +517,122 @@ function processPayment(event) {
     }, 2000);
 }
 
+/* ---------- NEW Checkout / Payment Flow ---------- */
+
+/**
+ * Called by checkout.html when user clicks "Pay Now".
+ * method: 'card' | 'upi' | 'cod'
+ */
+function handleCheckoutStart(method) {
+  const cart = getLocalStorage(CART_KEY);
+  if (!cart || cart.length === 0) {
+    showToast('Your cart is empty', 'error');
+    setTimeout(() => window.location.href = './cart.html', 700);
+    return;
+  }
+
+  // If COD -> create order immediately
+  if (method === 'cod') {
+    // create order with COD
+    finalizeOrder('COD');
+    return;
+  }
+
+  // For card / upi -> open simulated gateway
+  openPaymentGateway(method);
+}
+
+/**
+ * Opens the simulated gateway modal and hooks success/failure.
+ */
+function openPaymentGateway(method) {
+  const gatewayModalEl = document.getElementById('gatewayModal');
+  const gatewayModal = new bootstrap.Modal(gatewayModalEl);
+  const msg = document.getElementById('gateway-msg');
+  const spinner = document.getElementById('gateway-spinner');
+  const actions = document.getElementById('gateway-actions');
+
+  msg.innerText = `Processing ${method === 'card' ? 'Card' : 'UPI'} payment...`;
+  spinner.classList.remove('d-none');
+  actions.classList.add('d-none');
+
+  gatewayModal.show();
+
+  // After small delay, show action buttons (simulate redirect to bank)
+  setTimeout(() => {
+    spinner.classList.add('d-none');
+    actions.classList.remove('d-none');
+  }, 1200);
+
+  // hookup buttons
+  const successBtn = document.getElementById('gateway-success');
+  const failBtn = document.getElementById('gateway-fail');
+
+  const onSuccess = () => {
+    successBtn.removeEventListener('click', onSuccess);
+    failBtn.removeEventListener('click', onFail);
+    gatewayModal.hide();
+    // finalize order with payment method (simulate gateway success)
+    finalizeOrder(method.toUpperCase());
+  };
+
+  const onFail = () => {
+    successBtn.removeEventListener('click', onSuccess);
+    failBtn.removeEventListener('click', onFail);
+    gatewayModal.hide();
+    showToast('Payment failed. Please try again.', 'error');
+  };
+
+  successBtn.addEventListener('click', onSuccess);
+  failBtn.addEventListener('click', onFail);
+}
+
+/**
+ * Finalize the order: create order object, save to orders, clear cart, show success modal.
+ * payMethod: string like 'COD' or 'CARD' or 'UPI'
+ */
+function finalizeOrder(payMethod) {
+  const cart = getLocalStorage(CART_KEY);
+  const user = getLoggedInUser();
+  if (!user) {
+    showToast('Please login to place order', 'error');
+    setTimeout(() => window.location.href = './index.html', 900);
+    return;
+  }
+
+  const total = getCartTotal();
+
+  const newOrder = {
+    id: 'ORD-' + Date.now().toString().slice(-6),
+    date: new Date().toISOString(),
+    userId: user.email,
+    items: cart,
+    total: total,
+    paymentMethod: payMethod,
+    status: payMethod === 'COD' ? 'Placed (COD)' : 'Paid'
+  };
+
+  const orders = getLocalStorage(ORDERS_KEY);
+  orders.push(newOrder);
+  setLocalStorage(ORDERS_KEY, orders);
+
+  // Clear cart
+  setLocalStorage(CART_KEY, []);
+  updateCartBadge();
+
+  // Show success modal
+  const successModalEl = document.getElementById('orderSuccessModal');
+  if (successModalEl) {
+    document.getElementById('order-id-span').innerText = newOrder.id;
+    const modal = new bootstrap.Modal(successModalEl);
+    modal.show();
+  } else {
+    alert(`Order ${newOrder.id} placed!`);
+    window.location.href = 'profile.html';
+  }
+}
+
+
 // --- Profile & Orders ---
 
 function loadProfile() {
@@ -604,6 +720,11 @@ window.updateCartQuantity = updateCartQuantity;
 window.removeFromCart = removeFromCart;
 
 window.buyNow = buyNow;
+window.handleCheckoutStart = handleCheckoutStart;
+window.openPaymentGateway = openPaymentGateway;
+window.finalizeOrder = finalizeOrder;
+
+
 
 
 
