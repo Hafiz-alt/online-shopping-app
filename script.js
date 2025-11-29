@@ -107,6 +107,31 @@ function addToCart(productId) {
         setTimeout(() => window.location.href = './index.html', 1500);
         return;
     }
+    function buyNow(productId) {
+    const user = getLoggedInUser();
+    if (!user) {
+        showToast('Please login first', 'error');
+        setTimeout(() => window.location.href = './index.html', 900);
+        return;
+    }
+
+    const product = getProduct(productId);
+    if (!product) {
+        showToast('Product not found', 'error');
+        return;
+    }
+
+    // Replace cart with only this product
+    const singleCart = [
+        { productId, quantity: 1, productDetails: product }
+    ];
+
+    setLocalStorage(CART_KEY, singleCart);
+    updateCartBadge();
+
+    window.location.href = './checkout.html';
+}
+
 
     const product = getProduct(productId);
     if (!product) return;
@@ -577,5 +602,6 @@ window.logout = logout;
 window.addToCart = addToCart;
 window.updateCartQuantity = updateCartQuantity;
 window.removeFromCart = removeFromCart;
+
 
 
