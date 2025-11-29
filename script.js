@@ -726,6 +726,9 @@ window.buyNow = buyNow;
 window.handleCheckoutStart = handleCheckoutStart;
 window.openPaymentGateway = openPaymentGateway;
 window.finalizeOrder = finalizeOrder;
+window.buyNow = buyNow;
+
+
 
 
 
